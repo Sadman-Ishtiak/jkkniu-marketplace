@@ -14,7 +14,7 @@
             <!-- Logo -->
             <a href="/" class="text-3xl font-bold text-gray-800">JKKNIU Marketplace</a>
             
-            <!-- Right Section: Nav + Auth -->
+            <!-- Right Section: Nav + Search + Auth -->
             <div class="flex items-center space-x-6">
                 <!-- Navigation (desktop only) -->
                 <nav class="hidden md:flex items-center space-x-6">
@@ -23,6 +23,20 @@
                     <a href="/stores" class="text-gray-600 hover:text-gray-900 transition-colors duration-200">Stores</a>
                     <a href="/categories" class="text-gray-600 hover:text-gray-900 transition-colors duration-200">Categories</a>
                 </nav>
+
+                <!-- Search Bar -->
+                <form action="/search" method="GET" class="hidden md:flex">
+                    <input 
+                        type="text" 
+                        name="q" 
+                        placeholder="Search items..." 
+                        class="border border-gray-300 rounded-l-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 w-48"
+                    >
+                    <button type="submit" 
+                        class="bg-indigo-600 text-white px-3 py-2 rounded-r-md hover:bg-indigo-700 transition-colors duration-200">
+                        Search
+                    </button>
+                </form>
 
                 <!-- Auth Panel -->
                 <div id="auth-panel" class="flex items-center">
@@ -49,6 +63,20 @@
                 <a href="/buynow" class="text-gray-600 hover:text-gray-900 transition-colors duration-200">Buy Now</a>
                 <a href="/stores" class="text-gray-600 hover:text-gray-900 transition-colors duration-200">Stores</a>
                 <a href="/categories" class="text-gray-600 hover:text-gray-900 transition-colors duration-200">Categories</a>
+                
+                <!-- Search in Mobile Menu -->
+                <form action="/search" method="GET" class="flex mt-3">
+                    <input 
+                        type="text" 
+                        name="q" 
+                        placeholder="Search..." 
+                        class="border border-gray-300 rounded-l-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                    >
+                    <button type="submit" 
+                        class="bg-indigo-600 text-white px-3 py-2 rounded-r-md hover:bg-indigo-700 transition-colors duration-200">
+                        Go
+                    </button>
+                </form>
             </nav>
         </div>
     </header>
@@ -60,7 +88,7 @@
         });
     </script>
 
-    <!-- Main Content (flex-grow makes it expand) -->
+    <!-- Main Content -->
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 flex-grow">
         {{ $slot }}
     </main>
