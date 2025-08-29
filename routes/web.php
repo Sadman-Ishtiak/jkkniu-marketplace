@@ -13,3 +13,7 @@ Route::get('/login', function () {
 Route::get('/auctions', function () {
     return view('auctions/index');
 });
+
+Route::get('/register', function () {
+    return view('register');
+});
