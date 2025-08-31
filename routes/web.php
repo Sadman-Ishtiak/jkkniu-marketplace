@@ -40,3 +40,58 @@ Route::get('/auctions', function () {
 Route::get('/buynow', function () {
     return view('buynow/index');
 });
+
+Route::get('/stores', function () {
+    return view('stores/stores');
+});
+
+
+Route::get('/categories', function () {
+    // This is temporary placeholder data.
+    // We are simulating what would be returned from your database.
+    $categories = collect([
+        (object) [
+            'id' => 1,
+            'name' => 'Electronics',
+            'subcategories' => collect([
+                (object) ['id' => 11, 'name' => 'Smartphones', 'slug' => 'smartphones', 'subcategories' => collect()],
+                (object) ['id' => 12, 'name' => 'Laptops', 'slug' => 'laptops', 'subcategories' => collect()],
+                (object) ['id' => 13, 'name' => 'Cameras', 'slug' => 'cameras', 'subcategories' => collect()],
+            ]),
+        ],
+        (object) [
+            'id' => 2,
+            'name' => 'Fashion',
+            'subcategories' => collect([
+                (object) [
+                    'id' => 21,
+                    'name' => 'Men\'s Fashion',
+                    'slug' => 'mens-fashion',
+                    'subcategories' => collect([
+                        (object) ['id' => 211, 'name' => 'T-Shirts', 'slug' => 't-shirts'],
+                        (object) ['id' => 212, 'name' => 'Jeans', 'slug' => 'jeans'],
+                    ]),
+                ],
+                (object) [
+                    'id' => 22,
+                    'name' => 'Women\'s Fashion',
+                    'slug' => 'womens-fashion',
+                    'subcategories' => collect([
+                        (object) ['id' => 221, 'name' => 'Dresses', 'slug' => 'dresses'],
+                        (object) ['id' => 222, 'name' => 'Skirts', 'slug' => 'skirts'],
+                    ]),
+                ],
+            ]),
+        ],
+        (object) [
+            'id' => 3,
+            'name' => 'Home & Garden',
+            'subcategories' => collect([
+                (object) ['id' => 31, 'name' => 'Furniture', 'slug' => 'furniture', 'subcategories' => collect()],
+                (object) ['id' => 32, 'name' => 'Kitchen Appliances', 'slug' => 'kitchen-appliances', 'subcategories' => collect()],
+            ]),
+        ],
+    ]);
+
+    return view('categories', compact('categories'));
+})->name('categories');
