@@ -1,9 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StoreController;
+use App\Http\Controllers\AuctionController;
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
@@ -11,6 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/extra/update', [ProfileController::class, 'updateExtra'])->name('profile.extra.update');
+
+    Route::post('/store/request', [StoreController::class, 'requestStore'])->name('store.request');
+});
 
 
 Route::get('/login', function() {
@@ -30,15 +44,14 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login.pos
 
 // Logout route
 Route::post('/logout', function () {
-    Auth::logout();
+    Auth::guard('web')->logout();
     request()->session()->invalidate();
     request()->session()->regenerateToken();
     return redirect('/');
 })->name('logout');
 
-Route::get('/auctions', function () {
-    return view('auctions/index');
-});
+Route::get('/auctions', [AuctionController::class, 'index'])->name('auctions.index');
+Route::get('/auctions/{id}', [AuctionController::class, 'show'])->name('auctions.show');
 
 Route::get('/buynow', function () {
     return view('buynow/index');
