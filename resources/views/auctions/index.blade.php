@@ -15,7 +15,7 @@
 
                         <div class="mt-4">
                             <span class="text-lg font-bold text-indigo-600">${{ number_format($auction->starting_price, 2) }}</span>
-                            <a href="{{ route('auctions.show', $auction->id) }}" 
+                            <a href="{{ route('auctions.view', $auction->id) }}" 
                                class="inline-block bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors duration-200 float-right">
                                 View Details
                             </a>

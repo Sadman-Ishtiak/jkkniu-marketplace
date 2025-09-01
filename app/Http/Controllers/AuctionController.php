@@ -15,10 +15,10 @@ class AuctionController extends Controller
         return view('auctions.index', compact('auctions'));
     }
 
-    public function show($id)
-    {
-        $auction = Auction::with('product.images')->findOrFail($id);
-
-        return view('auctions.show', compact('auction'));
+    public function view($id) {
+        $auction = \App\Models\Auction::with('product.images')->findOrFail($id);
+        return view('auctions.view', compact('auction')); // ✅ using view.blade.php
     }
+
+
 }

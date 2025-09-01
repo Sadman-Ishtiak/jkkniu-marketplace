@@ -51,7 +51,7 @@ Route::post('/logout', function () {
 })->name('logout');
 
 Route::get('/auctions', [AuctionController::class, 'index'])->name('auctions.index');
-Route::get('/auctions/{id}', [AuctionController::class, 'show'])->name('auctions.show');
+Route::get('/auctions/{id}', [AuctionController::class, 'view'])->name('auctions.view');
 
 Route::get('/buynow', function () {
     return view('buynow/index');

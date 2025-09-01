@@ -10,8 +10,8 @@ class AuctionSeeder extends Seeder
 {
     public function run(): void
     {
-        // Create 10 auctions with products + at least 1 image each
-        Auction::factory(10)
+        // Create 45 auctions with products + at least 1 image each
+        Auction::factory(45)
             ->hasProduct(1, function (array $attributes, $auction) {
                 return [
                     // Each product gets 2 random images
