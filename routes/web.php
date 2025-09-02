@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Auction;
+use App\Models\Product;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SearchController;
@@ -13,9 +14,11 @@ use App\Http\Controllers\AuctionController;
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 Route::get('/', function () {
-    $auctions = Auction::all();
-    return view('auctions.index', compact('auctions'));
-});
+    $auctions = Auction::with('images')->latest()->take(8)->get();
+    $buynow = Product::with('images')->latest()->take(8)->get();
+
+    return view('welcome', compact('auctions', 'buynow'));
+})->name('welcome');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {

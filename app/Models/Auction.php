@@ -10,14 +10,17 @@ class Auction extends Model
     use HasFactory;
 
     protected $fillable = [
-        'product_id',
+        'title',
+        'description',
         'starting_price',
-        'current_price',
-        'status',
-        'ends_at',
+        'end_date',
+        'seller_id',
     ];
 
-    public function product() {
-        return $this->belongsTo(Product::class);
+    // 👇 Many-to-many relationship
+    public function images()
+    {
+        return $this->belongsToMany(Image::class, 'auction_images');
     }
+
 }

@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\{ProductImage, Product, Image};
+use App\Models\{AuctionImage, Auction, Image};
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProductImageFactory extends Factory
+class AuctionImageFactory extends Factory
 {
-    protected $model = ProductImage::class;
+    protected $model = AuctionImage::class;
 
     public function definition(): array
     {
         return [
-            'product_id' => Product::factory(),
+            'auction_id' => Auction::factory(),
             'image_id' => Image::factory(),
         ];
     }

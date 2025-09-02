@@ -10,16 +10,20 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
+        'store_id',
+        'name',
         'description',
         'price',
-        'image',
+        'stock',
     ];
-    
-    public function images() {
+
+    public function images()
+    {
         return $this->hasMany(ProductImage::class);
     }
-    public function store() {
+
+    public function store()
+    {
         return $this->belongsTo(Store::class);
     }
 }

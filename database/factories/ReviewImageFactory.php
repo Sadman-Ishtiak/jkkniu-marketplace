@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\{ProductImage, Product, Image};
+use App\Models\{ReviewImage, Review, Image};
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProductImageFactory extends Factory
+class ReviewImageFactory extends Factory
 {
-    protected $model = ProductImage::class;
+    protected $model = ReviewImage::class;
 
     public function definition(): array
     {
         return [
-            'product_id' => Product::factory(),
+            'review_id' => Review::factory(),
             'image_id' => Image::factory(),
         ];
     }

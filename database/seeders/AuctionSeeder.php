@@ -20,8 +20,8 @@ class AuctionSeeder extends Seeder
             ->create()
             ->each(function ($auction) {
                 $auction->product->images()->createMany([
-                    ['url' => 'https://picsum.photos/seed/' . uniqid() . '/600/400'],
-                    ['url' => 'https://picsum.photos/seed/' . uniqid() . '/600/400'],
+                    ['file_path' => 'https://picsum.photos/seed/' . uniqid() . '/600/400'],
+                    ['file_path' => 'https://picsum.photos/seed/' . uniqid() . '/600/400'],
                 ]);
             });
     }
