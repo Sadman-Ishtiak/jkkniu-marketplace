@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Auction;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SearchController;
@@ -12,7 +13,8 @@ use App\Http\Controllers\AuctionController;
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 Route::get('/', function () {
-    return view('welcome');
+    $auctions = Auction::all();
+    return view('auctions.index', compact('auctions'));
 });
 
 Route::middleware(['auth'])->group(function () {
