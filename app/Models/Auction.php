@@ -10,17 +10,27 @@ class Auction extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'description',
+        'product_id',
         'starting_price',
-        'end_date',
-        'seller_id',
+        'end_time',
+        'user_id',
     ];
 
-    // 👇 Many-to-many relationship
+    // ✅ Define relationship to Product
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    // (Optional) if you want to know which user created auction
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    // (Optional) images if you’re using auction_images table
     public function images()
     {
         return $this->belongsToMany(Image::class, 'auction_images');
     }
-
 }

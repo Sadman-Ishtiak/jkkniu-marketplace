@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Auction;
 use App\Models\Product;
+use App\Models\Store;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SearchController;
@@ -59,11 +60,13 @@ Route::get('/auctions', [AuctionController::class, 'index'])->name('auctions.ind
 Route::get('/auctions/{id}', [AuctionController::class, 'view'])->name('auctions.view');
 
 Route::get('/buynow', function () {
-    return view('buynow/index');
+    $buynow = Product::with('images')->latest()->get();
+    return view('buynow/index', compact('buynow'));
 });
 
 Route::get('/stores', function () {
-    return view('stores/stores');
+    $stores = Store::all();
+    return view('stores/index', compact('stores'));
 });
 
 
